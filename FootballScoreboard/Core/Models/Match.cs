@@ -2,6 +2,21 @@
 {
 	public class Match
 	{
+		public Match(string homeTeam, string awayTeam)
+		{
+			Id = Guid.NewGuid();
+
+			HomeTeam = homeTeam;
+			AwayTeam = awayTeam;
+
+			// assuming initial score 0 – 0
+			HomeTeamScore = 0;
+			AwayTeamScore = 0;
+
+			// Assuming a match starts at the current time
+			StartTime = DateTime.Now;
+		}
+
 		public Guid Id { get; }
 
 		public string HomeTeam { get; }
@@ -14,11 +29,20 @@
 
 		public DateTime StartTime { get; }
 
-		public Match(string homeTeam, string awayTeam) {}
-
 		public void UpdateScore(int homeTeamScore, int awayTeamScore)
 		{
-			throw new NotImplementedException();
+			if (homeTeamScore < 0 || awayTeamScore < 0)
+			{
+				throw new ArgumentException("team score cannot be less than zero");
+			}
+
+			HomeTeamScore = homeTeamScore;
+			AwayTeamScore = awayTeamScore;
+		}
+
+		public override string ToString()
+		{
+			return $"{HomeTeam} {HomeTeamScore} - {AwayTeam} {AwayTeamScore}";
 		}
 	}
 }
