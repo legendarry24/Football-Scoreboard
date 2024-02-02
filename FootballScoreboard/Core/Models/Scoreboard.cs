@@ -9,17 +9,17 @@ namespace FootballScoreboard.Core.Models
 			throw new NotImplementedException();
 		}
 
-		public void UpdateMatchScore(IMatch match, int homeTeamScore, int awayTeamScore)
+		public void UpdateMatchScore(Guid matchId, int homeTeamScore, int awayTeamScore)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void FinishMatch(IMatch match)
+		public void FinishMatch(Guid matchId)
 		{
 			throw new NotImplementedException();
 		}
 
-		public string GetSummary()
+		public IEnumerable<string> GetSummary()
 		{
 			throw new NotImplementedException();
 		}

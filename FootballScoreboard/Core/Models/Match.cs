@@ -1,9 +1,9 @@
-﻿using FootballScoreboard.Core.Interfaces;
-
-namespace FootballScoreboard.Core.Models
+﻿namespace FootballScoreboard.Core.Models
 {
-	public class Match : IMatch
+	public class Match
 	{
+		public Guid Id { get; }
+
 		public string HomeTeam { get; }
 
 		public string AwayTeam { get; }

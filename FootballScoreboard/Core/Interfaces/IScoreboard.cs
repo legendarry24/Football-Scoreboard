@@ -6,10 +6,10 @@ namespace FootballScoreboard.Core.Interfaces
 	{
 		Match StartNewMatch(string homeTeam, string awayTeam);
 
-		void UpdateMatchScore(IMatch match, int homeTeamScore, int awayTeamScore);
+		void UpdateMatchScore(Guid matchId, int homeTeamScore, int awayTeamScore);
 
-		void FinishMatch(IMatch match);
+		void FinishMatch(Guid matchId);
 
-		string GetSummary();
+		IEnumerable<string> GetSummary();
 	}
 }
