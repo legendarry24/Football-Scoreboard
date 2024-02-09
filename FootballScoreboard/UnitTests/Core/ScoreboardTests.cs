@@ -84,5 +84,30 @@ namespace FootballScoreboard.UnitTests.Core
 
 			Assert.Equal(expectedSummary, actualSummary);
 		}
+
+		[Fact]
+		public void GetTeamScore_WhenCorrectTeamNamePassed_ReturnsTeamScore()
+		{
+			var scoreboard = new Scoreboard();
+			Match match = scoreboard.StartNewMatch(teamA, teamB);
+			const int expectedScore = 1;
+			scoreboard.UpdateMatchScore(match.Id, 2, expectedScore);
+
+			int actualScore = scoreboard.GetTeamScore(teamB);
+
+			Assert.Equal(expectedScore, actualScore);
+		}
+
+		[Fact]
+		public void GetTeamScore_WhenTeamIsNotFound_ThrowsException()
+		{
+			var scoreboard = new Scoreboard();
+			scoreboard.StartNewMatch(teamA, teamB);
+
+			Action act = () => scoreboard.GetTeamScore("TeamC");
+
+			var exception = Assert.Throws<Exception>(act);
+			Assert.Equal("the team wasn't found", exception.Message);
+		}
 	}
 }

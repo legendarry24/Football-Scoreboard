@@ -8,6 +8,8 @@ namespace FootballScoreboard.Core.Interfaces
 
 		void UpdateMatchScore(Guid matchId, int homeTeamScore, int awayTeamScore);
 
+		int GetTeamScore(string teamName);
+
 		void FinishMatch(Guid matchId);
 
 		IEnumerable<string> GetSummary();

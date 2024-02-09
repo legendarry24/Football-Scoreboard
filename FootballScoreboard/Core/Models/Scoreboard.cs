@@ -1,4 +1,5 @@
-﻿using FootballScoreboard.Core.Interfaces;
+﻿using System.Text.RegularExpressions;
+using FootballScoreboard.Core.Interfaces;
 
 namespace FootballScoreboard.Core.Models
 {
@@ -20,6 +21,23 @@ namespace FootballScoreboard.Core.Models
 			var match = _matches.Find(match => match.Id == matchId);
 
 			match?.UpdateScore(homeTeamScore, awayTeamScore);
+		}
+
+		public int GetTeamScore(string teamName)
+		{
+			var match = _matches.Find(m => m.HomeTeam == teamName);
+			if (match is not null)
+			{
+				return match.HomeTeamScore;
+			}
+
+			match = _matches.Find(m => m.AwayTeam == teamName);
+			if (match is not null)
+			{
+				return match.AwayTeamScore;
+			}
+
+			throw new Exception("the team wasn't found");
 		}
 
 		public void FinishMatch(Guid matchId)
